@@ -51,7 +51,8 @@ public class IOTApplication implements CommandLineRunner {
         if (appUserRepository.existsByUserName("iotAdmin")) {
             logger.info("........IOTApplication CommandLineRunner ........ userExits");
             Optional<AppUser> iotAdmin = appUserRepository.findByUserName("iotAdmin");
-            appUser.setId(iotAdmin.get().getId());
+//            appUser.setId(iotAdmin.get().getId());
+            appUserRepository.deleteById(iotAdmin.get().getId());
             appUserRepository.save(appUser);
         } else {
             appUserRepository.save(appUser);
