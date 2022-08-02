@@ -14,4 +14,5 @@ public interface AppUserRepository extends MongoRepository<AppUser, String> {
     boolean existsByEmail(String email);
 
     boolean deleteByUserName(String username);
+
 }

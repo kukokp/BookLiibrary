@@ -4,16 +4,11 @@ import com.iot.api.model.Author;
 import com.iot.api.model.common.SuccessResponse;
 import com.iot.api.model.request.create.AuthorCreationRequest;
 import com.iot.api.model.request.filter.AuthorFilter;
-import com.iot.api.model.user.AppRoleConstants;
 import com.iot.api.service.AuthorService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/library")

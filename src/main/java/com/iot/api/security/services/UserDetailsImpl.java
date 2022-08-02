@@ -1,6 +1,8 @@
 package com.iot.api.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.iot.api.enums.UserStatus;
+import com.iot.api.enums.UserType;
 import com.iot.api.model.user.AppUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,9 +28,11 @@ public class UserDetailsImpl implements UserDetails {
     private final String password;
 
     private final Collection<? extends GrantedAuthority> authorities;
+    private final UserType userType;
+    private  final UserStatus userStatus;
 
     public UserDetailsImpl(String id, String userName, String fullName, Long mobileNo, String email, String password,
-                           Collection<? extends GrantedAuthority> authorities) {
+                           Collection<? extends GrantedAuthority> authorities, UserType userType, UserStatus userStatus) {
         this.id = id;
         this.userName = userName;
         this.fullName = fullName;
@@ -36,6 +40,8 @@ public class UserDetailsImpl implements UserDetails {
         this.email = email;
         this.password = password;
         this.authorities = authorities;
+        this.userType = userType;
+        this.userStatus = userStatus;
     }
 
     public static UserDetailsImpl build(AppUser user) {
@@ -50,7 +56,7 @@ public class UserDetailsImpl implements UserDetails {
                 user.getMobileNo(),
                 user.getEmail(),
                 user.getPassword(),
-                authorities);
+                authorities, user.getUserType(), user.getUserStatus());
     }
 
     @Override
@@ -115,4 +121,11 @@ public class UserDetailsImpl implements UserDetails {
     }
 
 
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public UserStatus getUserStatus() {
+        return userStatus;
+    }
 }

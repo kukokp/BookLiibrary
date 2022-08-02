@@ -1,6 +1,8 @@
 package com.iot.api;
 
-import com.iot.api.model.user.AppRole;
+import com.iot.api.enums.AppRole;
+import com.iot.api.enums.UserStatus;
+import com.iot.api.enums.UserType;
 import com.iot.api.model.user.AppUser;
 import com.iot.api.repository.AppUserRepository;
 import org.slf4j.Logger;
@@ -47,13 +49,15 @@ public class IOTApplication implements CommandLineRunner {
         appUser.setEmail("iot@example.com");
         appUser.setAppRoles(enumValues);
         appUser.setPassword(encoder.encode("admin@123"));
+        appUser.setUserStatus(UserStatus.APPROVED);
+        appUser.setUserType(UserType.SUPER_ADMIN);
 
         if (appUserRepository.existsByUserName("iotAdmin")) {
             logger.info("........IOTApplication CommandLineRunner ........ userExits");
-            Optional<AppUser> iotAdmin = appUserRepository.findByUserName("iotAdmin");
+            //Optional<AppUser> iotAdmin = appUserRepository.findByUserName("iotAdmin");
 //            appUser.setId(iotAdmin.get().getId());
-            appUserRepository.deleteById(iotAdmin.get().getId());
-            appUserRepository.save(appUser);
+            //appUserRepository.deleteById(iotAdmin.get().getId());
+            //appUserRepository.save(appUser);
         } else {
             appUserRepository.save(appUser);
         }

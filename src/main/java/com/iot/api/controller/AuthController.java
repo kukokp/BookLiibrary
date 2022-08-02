@@ -1,12 +1,11 @@
 package com.iot.api.controller;
 
-import com.iot.api.model.Author;
+import com.iot.api.enums.AppRole;
 import com.iot.api.model.common.SuccessResponse;
 import com.iot.api.model.request.LoginRequest;
 import com.iot.api.model.request.SignupRequest;
 import com.iot.api.model.response.JwtResponse;
 import com.iot.api.model.response.MessageResponse;
-import com.iot.api.model.user.AppRole;
 import com.iot.api.model.user.AppUser;
 import com.iot.api.repository.AppUserRepository;
 import com.iot.api.security.jwt.JwtUtils;
@@ -67,20 +66,15 @@ public class AuthController {
                 userDetails.getFullName(),
                 userDetails.getMobileNo(),
                 userDetails.getEmail(),
-                roles);
+                roles,
+                userDetails.getUserType(),
+                userDetails.getUserStatus());
+
         SuccessResponse<JwtResponse> successResponse = new SuccessResponse<>();
         successResponse.setStatus(HttpStatus.OK.value());
         successResponse.setMessage(HttpStatus.OK.name());
         successResponse.setData(Collections.singletonList(jwtResponse));
         return ResponseEntity.ok(successResponse);
-
-//        return ResponseEntity.ok(new JwtResponse(jwt,
-//                userDetails.getId(),
-//                userDetails.getUsername(),
-//                userDetails.getFullName(),
-//                userDetails.getMobileNo(),
-//                userDetails.getEmail(),
-//                roles));
     }
 
     @PostMapping("/signup")

@@ -1,6 +1,6 @@
-package com.iot.api.model.user;
+package com.iot.api.enums;
 
-import static com.iot.api.model.user.AppRoleConstants.*;
+import static com.iot.api.constant.AppRoleConstants.*;
 
 public enum AppRole {
 

@@ -1,4 +1,4 @@
-package com.iot.api.model.user;
+package com.iot.api.constant;
 
 public class AppRoleConstants {
 
