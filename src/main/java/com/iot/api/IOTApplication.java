@@ -47,7 +47,7 @@ public class IOTApplication implements CommandLineRunner {
         appUser.setFullName("IOT ADMIN");
         appUser.setMobileNo(9725080848L);
         appUser.setEmail("iot@example.com");
-        appUser.setAppRoles(enumValues);
+        appUser.setRoles(enumValues);
         appUser.setPassword(encoder.encode("admin@123"));
         appUser.setUserStatus(UserStatus.APPROVED);
         appUser.setUserType(UserType.SUPER_ADMIN);

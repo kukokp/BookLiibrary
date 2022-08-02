@@ -132,7 +132,7 @@ public class AuthController {
 //            });
 //        }
 
-        appUser.setAppRoles((List<AppRole>) roles);
+        appUser.setRoles((List<AppRole>) roles);
         appUserRepository.save(appUser);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

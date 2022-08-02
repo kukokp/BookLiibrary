@@ -4,10 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.iot.api.enums.AppRole;
 import com.iot.api.enums.UserStatus;
 import com.iot.api.enums.UserType;
+import com.iot.api.model.Author;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -17,16 +19,15 @@ import java.util.List;
 @Setter
 @Document
 @RequiredArgsConstructor
-public class AppUser {
+public class RoleGroup {
     @Id
     private String id;
-    private String userName;
-    private String fullName;
-    private Long mobileNo;
-    private String email;
-    @JsonIgnore
-    private String password;
+    private String groupName;
     private List<AppRole> roles=new ArrayList<>();
-    private UserType userType;
-    private UserStatus userStatus;
+    private UserType userType=UserType.SUPER_ADMIN;
+    private Boolean isActive=true;
+
+    @JsonIgnore
+    @DBRef
+    private AppUser createdByAppUser;
 }
